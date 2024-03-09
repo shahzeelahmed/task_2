@@ -236,7 +236,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           context,
                           2,
                           KML.screenOverlay(
-                              'https://github.com/Mahy02/HAPIS-Refurbishment--Humanitarian-Aid-Panoramic-Interactive-System-/blob/week4/hapis/assets/images/cityBallon.png?raw=true',
+                              'https://github.com/shahzeelahmed/task_2/blob/main/assets/lg_overlay.png?raw=true',
                               Util.splashAspectRatio));
                     },
                     child: const Text('Overlay')),

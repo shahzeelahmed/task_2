@@ -38,12 +38,14 @@ class _SplashViewState extends State<SplashView>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              Image.asset(
-                'assets/LIQUIDGALAXYLOGO_cropped.png',
+                
+              Image.network(
+                
+                	'https://github.com/shahzeelahmed/task_2/blob/main/assets/LIQUIDGALAXYLOGO_cropped.png?raw=true',
                 height: mHeight * 0.2,
                 width: mWidth * 0.2,
               )
-              .animate().slideX(begin: 1,curve: Curves.linearToEaseOut,duration: 700.ms).shimmer(delay: 200.ms, duration: 2.seconds)
+              .animate().slideX(begin: 1,curve: Curves.linearToEaseOut,duration: 700.ms).shimmer(delay: 200.ms, duration: 3.seconds)
               ,
             
               const Text('Liquid Galaxy',style: TextStyle(color:Colors.grey,fontWeight:  FontWeight.w400,fontSize: 30),)
