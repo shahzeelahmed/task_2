@@ -9,8 +9,6 @@ import '../views/home_view.dart';
 
 part 'connection_controller.g.dart';
 
-
-
 StateProvider<SSHClient?> clientProvider = StateProvider(
   (ref) => null,
 );
@@ -18,6 +16,7 @@ StateProvider<SSHClient?> clientProvider = StateProvider(
 ///using riverpod's [AsyncValue] to write cleaner code and seperating business logic from ui
 
 @Riverpod(keepAlive: true)
+
 /// [keepAlive] is set to true to cache the data for the current session
 class ConnectToLG extends _$ConnectToLG {
   @override
@@ -36,10 +35,11 @@ class ConnectToLG extends _$ConnectToLG {
               timeout: const Duration(seconds: 5)),
           username: userName,
           onPasswordRequest: () => password,
-          onAuthenticated: () async {});
+          );
 
       ///update the [state] if result is true
       //this sets the return value to true which was initially false
+      state = const AsyncData(true);
       ref.read(isConnectedProvider.notifier).setState(true);
       return true;
     } on SocketException catch (e) {
@@ -63,7 +63,7 @@ class IsConnected extends _$IsConnected {
   }
 }
 
-//close the connection to client   
+//close the connection to client
 
 @riverpod
 class Disconnect extends _$Disconnect {
@@ -73,7 +73,6 @@ class Disconnect extends _$Disconnect {
   }
 
   Future<void> disconnect() async {
-   
     try {
       ref.read(clientProvider)!.close();
       ref.read(isConnectedProvider.notifier).state = false;
@@ -93,7 +92,6 @@ class Relaunch extends _$Relaunch {
   }
 
   Future<void> relaunchLG() async {
-    
     //hardcoded for demonstration
 
     String passWord = 'lg';

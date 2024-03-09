@@ -184,7 +184,7 @@ class _PopupContainerState extends ConsumerState<PopupContainer>
                                         passWordController.text);
                           },
                           child: ref.watch(connectToLGProvider).when(
-                              data: (data) => LottieBuilder.network(
+                              data: (data) => LottieBuilder.asset(
                                       controller: _controller,
                                       isConnected
                                           ? 'assets/disconnect_animation.json'

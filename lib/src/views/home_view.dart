@@ -1,21 +1,16 @@
 import 'dart:math';
 
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import 'package:task_2/src/views/connection_view.dart';
 
 import '../constants/util.dart';
 import '../controllers/connection_controller.dart';
 import '../model/kml_model.dart';
 
-
-
-StateProvider<CameraPosition?> lastGMapPositionProvider =
-    StateProvider((ref) => null);
 
 StateProvider<int> rigsProvider = StateProvider((ref) => 3);
 
@@ -28,19 +23,15 @@ class HomeView extends ConsumerStatefulWidget {
 class _HomeViewState extends ConsumerState<HomeView> {
   final snackbar = SnackBar(
     duration: const Duration(seconds: 1),
-                  
-                  elevation: 0,
-                  behavior: SnackBarBehavior.floating,
-                  backgroundColor: Colors.transparent,
-                  content: AwesomeSnackbarContent(
-                    title: 'Not Connected to LG',
-                    message:
-                        'Please connect to LG and try again',
-
-                   
-                    contentType: ContentType.failure,
-                  ),
-                );
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'Not Connected to LG',
+      message: 'Please connect to LG and try again',
+      contentType: ContentType.failure,
+    ),
+  );
   orbitAround() async {
     try {
       for (int i = 0; i <= 360; i += 10) {
@@ -56,7 +47,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
       }
     } catch (error) {
       print(e);
-     
     }
   }
 
@@ -83,13 +73,13 @@ class _HomeViewState extends ConsumerState<HomeView> {
         body: Column(
           children: [
             isConnected
-                ? const Text(
+                ? Text(
                     'Connected',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.green.shade500),
                   )
-                : const Text(
+                : Text(
                     'Disconnected',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.red.shade500),
                   ),
             Row(
               children: [
@@ -102,13 +92,10 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 barrierDismissible: true,
                                 context: context,
                                 builder: (context) =>
-                                     const Column(
+                                    const Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
-                                            children: [
-                                                PopupContainer()
-
-                                            ])
+                                            children: [PopupContainer()])
                                         .animate()
                                         .scaleXY(
                                             delay: 100.ms,
@@ -154,13 +141,16 @@ class _HomeViewState extends ConsumerState<HomeView> {
                           ? showDialog(
                               context: context,
                               builder: (_) => AlertDialog(
+                                backgroundColor: const Color(0xff1a1625),
                                 shape: const RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(20.0)),
                                 ),
-                                title: const Text('Warning'),
+                                title: const Text('Warning',
+                                    style: TextStyle(color: Colors.white)),
                                 content: const Text(
-                                    'Are you sure you want to Relaunch LG?'),
+                                    'Are you sure you want to Relaunch LG?',
+                                    style: TextStyle(color: Colors.white)),
                                 actions: [
                                   TextButton(
                                     child: const Text('cancel',
@@ -180,39 +170,16 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     onPressed: () async {
                                       await ref
                                           .read(relaunchProvider.notifier)
-                                          .relaunchLG()
-                                          .then((_) => Navigator.pop(context));
+                                          .relaunchLG();
                                     },
                                   ),
                                 ],
                               ),
                             )
-                            :     
+                          : ScaffoldMessenger.of(context)
+                              .showSnackBar(snackbar);
 
-                ScaffoldMessenger.of(context)
-                  
-                  .showSnackBar(snackbar);
-              
-  
-                          // : showDialog(
-                          //     context: context,
-                          //     builder: (_) => AlertDialog(
-                          //           title: const Text('Not connected to LG'),
-                          //           actions: [
-                          //             TextButton(
-                          //                 onPressed: () {
-                          //                   Navigator.pop(context);
-                          //                 },
-                          //                 child: const Text('OK'))
-                          //           ],
-                          //         ));
-                      // await showDialog(
-                      //     context: context,
-                      //     builder: (_) {
-                      //       return const AlertDialog(
-
-                      //       );
-                      //     });
+                    
                     },
                     child: const Text('Relaunch')),
                 ElevatedButton(
