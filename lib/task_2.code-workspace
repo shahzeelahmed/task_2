@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "task_2",
+			"path": ".."
+		},
+		{
+			"name": "assets",
+			"path": "../../../liquid_galaxy_task2/assets"
+		}
+	],
+	"settings": {}
+}
