@@ -30,7 +30,7 @@ class _SplashViewState extends State<SplashView>
     final mHeight = MediaQuery.of(context).size.height;
     final mWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.deepPurple.shade100,
+      backgroundColor: const Color(0xff1a1625),
       body: SizedBox(
           height: mHeight,
           width: mWidth,
@@ -45,7 +45,7 @@ class _SplashViewState extends State<SplashView>
                 height: mHeight * 0.2,
                 width: mWidth * 0.2,
               )
-              .animate().slideX(begin: 1,curve: Curves.linearToEaseOut,duration: 700.ms).shimmer(delay: 200.ms, duration: 3.seconds)
+              .animate().slideX(begin: 1,curve: Curves.linearToEaseOut,duration: 700.ms).shimmer( delay: 200.ms, duration: 3.seconds)
               ,
             
               const Text('Liquid Galaxy',style: TextStyle(color:Colors.grey,fontWeight:  FontWeight.w400,fontSize: 30),)

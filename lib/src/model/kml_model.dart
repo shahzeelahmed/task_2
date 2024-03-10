@@ -9,6 +9,8 @@ class KML{
 
   final WidgetRef ref;
   KML(this.ref);
+
+
   Future<String> renderInSlave(context, int slaveNo, String kml) async {
     try {
       await ref
@@ -20,7 +22,6 @@ class KML{
     }
   }
 
-  
   static screenOverlay(String imageUrl, double factor) =>
 
       '''<?xml version="1.0" encoding="UTF-8"?>
