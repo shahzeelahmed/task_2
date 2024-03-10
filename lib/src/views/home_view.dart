@@ -81,11 +81,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     'Disconnected',
                     style: TextStyle(color: Colors.red.shade500),
                   ),
-                  Image.network(
-                    height: 100,
-                    width: 100,
-                    'https://github.com/shahzeelahmed/task_2/blob/main/assets/LIQUIDGALAXYLOGO_cropped.png?raw=true',
-                  ).animate(autoPlay: true,).shimmer(),
+                
             Row(
               children: [
                 Padding(
