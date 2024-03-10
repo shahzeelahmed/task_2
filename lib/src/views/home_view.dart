@@ -81,6 +81,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     'Disconnected',
                     style: TextStyle(color: Colors.red.shade500),
                   ),
+                  Image.network(
+                    height: 100,
+                    width: 100,
+                    'https://github.com/shahzeelahmed/task_2/blob/main/assets/LIQUIDGALAXYLOGO_cropped.png?raw=true',
+                  ).animate(autoPlay: true,).shimmer(),
             Row(
               children: [
                 Padding(
@@ -130,7 +135,33 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       await flyTo(context, 21.1403326, 79.0554359, 500, 0, 0);
                     },
                     child: const Text('Fly to Home')),
+                
                 ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateColor.resolveWith(
+                            (states) => const Color(0xffd29ddb)),
+                        foregroundColor: MaterialStateColor.resolveWith(
+                            (states) => const Color(0xffffffff))),
+                    onPressed: () async {
+                      await orbitAround();
+                    },
+                    child: const Text('Orbit')),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateColor.resolveWith(
+                            (states) => const Color(0xffd29ddb)),
+                        foregroundColor: MaterialStateColor.resolveWith(
+                            (states) => const Color(0xffffffff))),
+                    onPressed: () async {
+                      await KML(ref).renderInSlave(
+                          context,
+                          2,
+                          KML.screenOverlay(
+                              'https://github.com/shahzeelahmed/task_2/blob/main/assets/lg_overlay.png?raw=true',
+                              Util.splashAspectRatio));
+                    },
+                    child: const Text('Overlay')),
+                    ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor: MaterialStateColor.resolveWith(
                             (states) => const Color(0xffd29ddb)),
@@ -182,31 +213,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     
                     },
                     child: const Text('Relaunch')),
-                ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateColor.resolveWith(
-                            (states) => const Color(0xffd29ddb)),
-                        foregroundColor: MaterialStateColor.resolveWith(
-                            (states) => const Color(0xffffffff))),
-                    onPressed: () async {
-                      await orbitAround();
-                    },
-                    child: const Text('Orbit')),
-                ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateColor.resolveWith(
-                            (states) => const Color(0xffd29ddb)),
-                        foregroundColor: MaterialStateColor.resolveWith(
-                            (states) => const Color(0xffffffff))),
-                    onPressed: () async {
-                      await KML(ref).renderInSlave(
-                          context,
-                          2,
-                          KML.screenOverlay(
-                              'https://github.com/shahzeelahmed/task_2/blob/main/assets/lg_overlay.png?raw=true',
-                              Util.splashAspectRatio));
-                    },
-                    child: const Text('Overlay')),
               ],
             )),
           ],

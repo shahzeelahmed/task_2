@@ -45,7 +45,7 @@ class _SplashViewState extends State<SplashView>
                 height: mHeight * 0.2,
                 width: mWidth * 0.2,
               )
-              .animate().slideX(begin: 1,curve: Curves.linearToEaseOut,duration: 700.ms).shimmer( delay: 200.ms, duration: 3.seconds)
+              .animate().slideX(begin: 1,curve: Curves.linearToEaseOut,duration: 700.ms).shimmer(color: Colors.grey.shade400, delay: 400.ms, duration: 4.seconds)
               ,
             
               const Text('Liquid Galaxy',style: TextStyle(color:Colors.grey,fontWeight:  FontWeight.w400,fontSize: 30),)
